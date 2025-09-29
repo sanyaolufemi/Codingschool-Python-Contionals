@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corporate Solutions</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Corporate Solutions</div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="hero">
+            <h1>Innovative IT Solutions for a Smarter Business</h1>
+            <p>Transforming your operations with cutting-edge technology and unparalleled expertise.</p>
+            <a href="#services" class="cta-button">Explore Our Services</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="services" class="section-padding">
+            <h2>Our Services</h2>
+            <div class="service-cards">
+                <div class="card">
+                    <div class="card-icon">💻</div>
+                    <h3>Managed IT Services</h3>
+                    <p>Proactive monitoring and maintenance to keep your systems running smoothly.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">☁️</div>
+                    <h3>Cloud Solutions</h3>
+                    <p>Secure and scalable cloud infrastructure for enhanced productivity and collaboration.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🔒</div>
+                    <h3>Cybersecurity</h3>
+                    <p>Comprehensive protection against modern cyber threats to safeguard your data.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">📊</div>
+                    <h3>Data Analytics</h3>
+                    <p>Unlock valuable insights from your data to drive strategic business decisions.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section-padding dark-section">
+            <h2>About Us</h2>
+            <div class="about-content">
+                <p>At **Corporate Solutions**, we are a team of dedicated IT professionals committed to empowering businesses with technology. We believe that the right technology can be a powerful catalyst for growth and efficiency. Our mission is to provide reliable, secure, and innovative solutions tailored to your unique business needs.</p>
+                <p>With years of industry experience, we've helped countless businesses navigate the complex digital landscape. We pride ourselves on our client-focused approach, ensuring that every solution we provide is not just a service, but a true partnership.</p>
+            </div>
+        </section>
+
+        <section id="contact" class="section-padding">
+            <h2>Contact Us</h2>
+            <div class="contact-content">
+                <p>Ready to transform your business? Let's talk.</p>
+                <form action="#" method="post">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message:</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="cta-button">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Corporate Solutions. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const navLinks = document.querySelectorAll('nav ul li a');
+            const sections = document.querySelectorAll('main section');
+
+            function highlightNavLink() {
+                let current = 'home'; // Default to home if at the top
+                const heroHeight = document.querySelector('.hero').clientHeight;
+                if (pageYOffset < heroHeight) {
+                    current = 'home';
+                } else {
+                    sections.forEach(section => {
+                        const sectionTop = section.offsetTop;
+                        if (pageYOffset >= sectionTop - 100) { // Add a small offset
+                            current = section.getAttribute('id');
+                        }
+                    });
+                }
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').includes(current)) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', highlightNavLink);
+            highlightNavLink(); // Call on load to set initial active link
+
+            // Handle the home link separately if not part of a section
+            const homeLink = document.querySelector('a[href="#home"]');
+            homeLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
